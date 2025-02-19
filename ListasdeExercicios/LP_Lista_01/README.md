@@ -101,24 +101,34 @@ Para mais informações acesse [Aula 01: Fluxogramas.](https://www.notion.so/cai
       inicio((Início)) --> numero1[\Digite o primeiro número\]
       numero1 --> numero2[\Digite o segundo número\]
       numero2 --> numero3[\Digite o terceiro número\]
-      numero3 --> condicao1{N1 > N2 > N3?}
+      numero3 --> condicao1{N1 > N2?}
+      condicao1 --> |Não| condicao3{N2 > N3?}
+      condicao3 --> |Sim| resultado3[/O número 2 é o maior/]
+      resultado3 --> final
+      condicao3 --> |Não| resultado2
+      condicao1 --> |Sim| condicao2{N1> N3?}
+      condicao2 --> |Sim| resultado1[/O Número 1 é o maior/]
+      condicao2 --> |Não| resultado2[/O número 3 é o maior/]
+      resultado1 --> final([Fim])
+      resultado2 --> final
    ```
    
 8. Construa um fluxograma para calcular o fatorial de um número fornecido pelo usuário.
    
    ```mermaid
    flowchart TD
-      G["Sua resposta aqui!"]
+      A((Inicio)) --> B[/Digite um número/]
+      B --> C[r=1]
+      C --> D{n>1?}
+      D --> |Sim| E[r=r*n]
+      E --> F[n=n-1]
+      F --> D
+      D --> |Não| G[/Resposta = r/]
+      G --> H([Final])
+      
    ```
    
 9. Elabore um fluxograma para verificar se um número digitado pelo usuário é par.
-   
-   > Em várias linguagens de programação, o operador % retorna o resto da divisão entre dois números.    
-   > 
-   >**Exemplos**:  
-   > - 9 % 2 = 1  
-   > - 11 % 3 = 2
-   
    ```mermaid
    flowchart TD
       inicio((Início)) --> entrada[\Digite um número\]
@@ -133,5 +143,14 @@ Para mais informações acesse [Aula 01: Fluxogramas.](https://www.notion.so/cai
    
    ```mermaid
    flowchart TD
-      I["Sua resposta aqui!"]
+      inicio((Início)) --> B[\Digite um número\]
+      B --> C[i=n/2]
+      C --> D{i>1?}
+      D --> |Sim| E{O resto da divisao \n de n por i é \n igual a zero?}
+      D --> |Não| F[/É primo/]
+      E --> |Sim| H[/Não é primo/]
+      E --> |Não| G[i=i-1]
+      G --> D
+      F --> I([Final])
+      H --> I
    ```
